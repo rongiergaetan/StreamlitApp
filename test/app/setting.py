@@ -1,1 +1,0 @@
-ChampionshipColor = {"Bundesliga":"#006400","PL":"#6495ED","liga":"#EEB422","SerieA":"#9400D3","L1":"#DC143C"}
