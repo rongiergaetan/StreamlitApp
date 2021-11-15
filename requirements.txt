@@ -1,4 +1,4 @@
-python -m pip install -U matplotlib
-python -m pip install pandas
-python -m pip install numpy
-python -m pip install scipy
+matplotlib
+pandas
+numpy
+scipy
