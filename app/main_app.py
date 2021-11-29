@@ -11,7 +11,7 @@ Championshipchoice = st.sidebar.selectbox("which Championship do you want ?",("T
 
 
 choice = "/data/" + Championshipchoice
-TableChoice = pd.read_csv("data/Tirs_Bundesliga.csv")
+TableChoice = pd.read_csv("/data/Tirs_Bundesliga.csv")
 ChampionshipName = choice.split("_")[1].split(".")[0]
 
 
