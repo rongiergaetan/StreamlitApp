@@ -15,7 +15,7 @@ x = subprocess.run(['ls'])
 print(x)
 
 choice = "app/data/" + Championshipchoice
-TableChoice = pd.read_csv("choice")
+TableChoice = pd.read_csv(choice)
 ChampionshipName = choice.split("_")[1].split(".")[0]
 
 
