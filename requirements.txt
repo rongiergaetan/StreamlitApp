@@ -5,3 +5,4 @@ scipy
 seaborn
 subprocess.run
 bs4
+BeautifulSoup
