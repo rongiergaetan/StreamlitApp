@@ -1,23 +1,30 @@
-import streamlit as st
+import streamlit as stl
 import pandas as pd 
 import sys
 import plot
 import subprocess
+import WebScrapping as ws
+import setting as st
 
-st.title('Stat Tirs')
-
-
-
-Championshipchoice = st.sidebar.selectbox("which Championship do you want ?",("Tirs_Bundesliga.csv","Tirs_PL.csv","Tirs_liga.csv","Tirs_SerieA.csv","Tirs_L1.csv") )
+stl.title('Stat Tirs')
 
 
+###############################################################################
+#Choix du championnat Etudier
+Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Tirs_liga.csv","Tirs_Ligue1.csv","Tirs_Bundesliga.csv","Tirs_PremierLeague.csv","Tirs_SerieA.csv") )
 x = subprocess.run(['ls'])
-print(x)
-
 choice = "app/data/" + Championshipchoice
 TableChoice = pd.read_csv(choice)
 ChampionshipName = choice.split("_")[1].split(".")[0]
 
-
+###############################################################################
+#FirstPLot
 figure = plot.StatButs(TableChoice,ChampionshipName)
-st.pyplot(figure)
+stl.pyplot(figure)
+
+###############################################################################
+#Classement
+stl.title('Classement')
+TClassement = ws.DatafBref(ws.MakeURL(st.fbref,st.country,ChampionshipName),ChampionshipName)
+stl.dataframe(TClassement,width=1000,height=1000)
+stl.write("source: fbref")
