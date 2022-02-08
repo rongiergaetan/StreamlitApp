@@ -6,25 +6,25 @@ import subprocess
 import WebScrapping as ws
 import setting as st
 
-stl.title('Stat Tirs')
-
-
 ###############################################################################
 #Choix du championnat Etudier
 Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Tirs_liga.csv","Tirs_Ligue1.csv","Tirs_Bundesliga.csv","Tirs_PremierLeague.csv","Tirs_SerieA.csv") )
-x = subprocess.run(['ls'])
-choice = "app/data/" + Championshipchoice
-TableChoice = pd.read_csv(choice)
-ChampionshipName = choice.split("_")[1].split(".")[0]
+ChampionshipName = Championshipchoice.split("_")[1].split(".")[0]
 
-###############################################################################
-#FirstPLot
-figure = plot.StatButs(TableChoice,ChampionshipName)
-stl.pyplot(figure)
+#choix du tableau statistique de comparaison
+StatDataTable = stl.sidebar.selectbox("which stat data table do you want ?",("stat table list", "BaseDataTeam", "AgainstBaseDataTeam", "GoalkeepingStat", "AgainstGoalkeepingStat", "AdvancedGoalkeepingStat", "AgainstAdvancedGoalkeepingStat", "DataShoots", "AgainstDataShoots", "PassStat", "AgainstPassStat", "PassStatType", "AgainstPassStatType", "OffensiveCreation", "AgainstOffensiveCreation", "DefensiveAction", "AgainstDefensiveAction", "Possession","AgainstPossession") )
 
 ###############################################################################
 #Classement
-stl.title('Classement')
-TClassement = ws.DatafBref(ws.MakeURL(st.fbref,st.country,ChampionshipName),ChampionshipName)
-stl.dataframe(TClassement,width=1000,height=1000)
+DataFbref = ws.DatafBref(ws.MakeURL(st.fbref,st.country,ChampionshipName),ChampionshipName)
+
+stl.title("Classement")
+stl.dataframe(DataFbref[0],width=1000,height=1000)
+stl.write("source: fbref")
+
+stl.write("\t\t")
+
+ #tableau statistique
+stl.title(StatDataTable)
+stl.dataframe(DataFbref[st.Dico_OutDatafBreb[StatDataTable]],width=1000,height=1000)
 stl.write("source: fbref")
