@@ -31,5 +31,21 @@ if StatDataTable == "which stat data table do you want ?":
 	stl.write(" choice in the sidedebar with the second selectbox")
 else:
 	stl.write(StatDataTable)
-	stl.dataframe(DataFbref[st.Dico_OutDatafBreb[StatDataTable]],width=1000,height=1000)
+	df_stat_team = st.Dico_OutDatafBreb[StatDataTable]
+	stl.dataframe(DataFbref[df_stat_team],width=1000,height=1000)
 	stl.write("source: fbref")
+
+	#Barplot Stat Team
+	List = ["Which Team do you want to compare ?"]
+	for i in DataFbref[df_stat_team].index:
+		List.append(i)
+	Team_choice_1 = stl.sidebar.selectbox("Choice first team to compare",(List))
+	Team_choice_2 = stl.sidebar.selectbox("Choice second team to compare",(List))
+
+	if Team_choice_2 == "Which Team do you want to compare ?":
+		stl.write("You can choice ywo team to compre in the sidebar")
+	else:
+		stl.write("Barplot")
+		Barplot = plot.BarplotTeamStat(DataFbref[df_stat_team],Team_choice_1,Team_choice_2)
+		for i in Barplot:
+			stl.pyplot(i)

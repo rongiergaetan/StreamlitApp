@@ -40,7 +40,10 @@ def DatafBref(pageSoup,NB_Team):
 			TeamName = Team[0].text
 			Data=[]
 			for col in range(0,12):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [TeamName] + Data
 			Data = [row+1] + Data
 			Classement[row+1] = Data
@@ -56,7 +59,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data = []
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [centre[1].text] + Data
 			Data = [centre[0].text] + Data
 			BaseDataTeam[Team[row].text] = Data	
@@ -66,7 +72,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data = []
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [centre[1].text] + Data
 			Data = [centre[0].text] + Data
 			AgainstBaseDataTeam["Against " + Team[row].text] = Data		
@@ -77,7 +86,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,20):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[10:13]
 			del Data[2]
 			GoalkeepingStat[Team[row].text] = Data	
@@ -86,7 +98,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,20):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[10:13]
 			del Data[2]
 			AgainstGoalkeepingStat["Against " + Team[row].text] = Data	
@@ -95,7 +110,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AdvancedGoalkeepingStat[Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -103,7 +121,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstAdvancedGoalkeepingStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -111,7 +132,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,19):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			DataShoots[Team[row].text] = Data	
 			del DataClassement[0:19]
@@ -119,7 +143,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,19):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstDataShoots["Against " + Team[row].text] = Data	
 			del DataClassement[0:19]
@@ -127,7 +154,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,24):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			PassStat[Team[row].text] = Data	
 			del DataClassement[0:24]
@@ -135,7 +165,7 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,24):
-				Data.append(DataClassement[col].text)
+				Data.append(float(float(DataClassement[col].text)))
 			del Data[0:2]
 			AgainstPassStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:24]
@@ -143,7 +173,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			PassStatType[Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -151,7 +184,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstPassStatType["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -159,7 +195,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,18):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			OffensiveCreation[Team[row].text] = Data	
 			del DataClassement[0:18]
@@ -167,7 +206,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,18):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstOffensiveCreation["Against " + Team[row].text] = Data	
 			del DataClassement[0:18]
@@ -175,7 +217,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,25):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			DefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
@@ -183,7 +228,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,25):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstDefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
@@ -191,7 +239,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			Possession[Team[row].text] = Data	
 			del DataClassement[0:26]
@@ -199,7 +250,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,17):
 			Data=[]
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstPossession[Team[row].text] = Data	
 			del DataClassement[0:26]
@@ -213,7 +267,10 @@ def DatafBref(pageSoup,NB_Team):
 			TeamName = Team[0].text
 			Data=[]
 			for col in range(0,12):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [TeamName] + Data
 			Data = [row+1] + Data
 			Classement[row+1]=Data
@@ -229,7 +286,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data = []
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [centre[1].text] + Data
 			Data = [centre[0].text] + Data
 			BaseDataTeam[Team[row].text] = Data	
@@ -239,7 +299,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data = []
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			Data = [centre[1].text] + Data
 			Data = [centre[0].text] + Data
 			AgainstBaseDataTeam["Against " + Team[row].text] = Data		
@@ -249,7 +312,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,20):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[10:13]
 			del Data[2]
 			GoalkeepingStat[Team[row].text] = Data	
@@ -258,7 +324,12 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,20):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[10:13]
 			del Data[2]
 			AgainstGoalkeepingStat["Against " + Team[row].text] = Data	
@@ -267,7 +338,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AdvancedGoalkeepingStat[Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -275,7 +349,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstAdvancedGoalkeepingStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -283,7 +360,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,19):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			DataShoots[Team[row].text] = Data	
 			del DataClassement[0:19]
@@ -291,7 +371,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,19):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstDataShoots["Against " + Team[row].text] = Data	
 			del DataClassement[0:19]
@@ -299,7 +382,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,24):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			PassStat[Team[row].text] = Data	
 			del DataClassement[0:24]
@@ -307,7 +393,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,24):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstPassStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:24]
@@ -315,7 +404,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			PassStatType[Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -323,7 +415,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,27):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstPassStatType["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
@@ -331,7 +426,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,18):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			OffensiveCreation[Team[row].text] = Data	
 			del DataClassement[0:18]
@@ -339,7 +437,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,18):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstOffensiveCreation["Against " + Team[row].text] = Data	
 			del DataClassement[0:18]
@@ -347,7 +448,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,25):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			DefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
@@ -355,7 +459,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,25):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstDefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
@@ -363,7 +470,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			Possession[Team[row].text] = Data	
 			del DataClassement[0:26]
@@ -371,7 +481,10 @@ def DatafBref(pageSoup,NB_Team):
 		for row in range(0,20):
 			Data=[]
 			for col in range(0,26):
-				Data.append(DataClassement[col].text)
+				value = DataClassement[col].text.split(",")
+				if value[0] == '':
+					value = ["0"]
+				Data.append(float(".".join(value)))
 			del Data[0:2]
 			AgainstPossession[Team[row].text] = Data	
 			del DataClassement[0:26]
@@ -411,8 +524,5 @@ def DatafBref(pageSoup,NB_Team):
 
 	return df_Classement, df_BaseDataTeam, df_AgainstBaseDataTeam, df_GoalkeepingStat, df_AgainstGoalkeepingStat, df_AdvancedGoalkeepingStat, df_AgainstAdvancedGoalkeepingStat, df_DataShoots, df_AgainstDataShoots, df_PassStat, df_AgainstPassStat, df_PassStatType, df_AgainstPassStatType, df_OffensiveCreation, df_AgainstOffensiveCreation, df_DefensiveAction, df_AgainstDefensiveAction, df_Possession, df_AgainstPossession
 
-"""
+
 a  = DatafBref(MakeURL(st.fbref,st.country,"Ligue1"),"Ligue1")
-print(a[17])
-print(a[18])
-"""
