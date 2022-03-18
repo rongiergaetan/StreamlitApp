@@ -57,11 +57,13 @@ def BarplotTeamStat(df, Team1, Team2):
 
 	df_01 = df.loc[:,df.loc[Team1] < 1]
 	df_1 = df.loc[:,df.loc[Team1].between(1,10)]
-	df_10 = df.loc[:,df.loc[Team1].between(10,100)]
-	df_100 = df.loc[:,df.loc[Team1].between(100,1000)]
+	df_10 = df.loc[:,df.loc[Team1].between(10,50)]
+	df_50 = df.loc[:,df.loc[Team1].between(50,100)]
+	df_100 = df.loc[:,df.loc[Team1].between(100,500)]
+	df_500 = df.loc[:,df.loc[Team1].between(500,1000)]
 	df_1000 = df.loc[:,df.loc[Team1].between(1000,10000)]
 	df_10000 = df.loc[:,df.loc[Team1] >= 10000]
-	List_df = [df_01,df_1,df_10,df_100,df_1000,df_10000] 
+	List_df = [df_01,df_1,df_10,df_50,df_100,df_500,df_1000,df_10000] 
 	 
 	list_figure = []
 	for i in List_df:
