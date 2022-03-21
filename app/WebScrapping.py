@@ -95,7 +95,7 @@ def DatafBref(pageSoup,NB_Team):
 			GoalkeepingStat[Team[row].text] = Data	
 			del DataClassement[0:20]
 		#AgaintGoalkeepingStat 4
-		for row in range(0,20):
+		for row in range(0,17):
 			Data=[]
 			for col in range(0,20):
 				value = DataClassement[col].text.split(",")

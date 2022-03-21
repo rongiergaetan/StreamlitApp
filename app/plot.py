@@ -79,9 +79,9 @@ def BarplotTeamStat(df, Team1, Team2):
 			ind = np.arange(len(labels)) + barWidth/2
 			b1 = ax0.bar(r1,i.loc[Team1], width = barWidth, color=colors[0])
 			b2 = ax0.bar(r2,i.loc[Team2], width = barWidth, color=colors[1])
-			ax0.set_xticks(ind,labels,size=6)
+			ax0.set_xticks(ind,labels)
+			ax0.set_xticklabels(labels, rotation=55,horizontalalignment="right",size=12)
 			plt.legend([b1,b2],list(i.index),loc='upper center',bbox_to_anchor=(1.03, 1))
-			list_figure.append(fig)
 			#Attach a text label above each bar displaying its height
 			def autolabel(bars, Team):
 				Iter = 0
@@ -93,8 +93,6 @@ def BarplotTeamStat(df, Team1, Team2):
 					ax0.text(bar.get_x() + bar.get_width()/2, 1.1*height,str(height),ha='center', va='bottom', size=6)
 			autolabel(b1, Team1)
 			autolabel(b2, Team2)
+			list_figure.append(fig)
 
 	return list_figure
-
-	for i in list_figure:
-		plt.show()

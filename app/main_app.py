@@ -8,8 +8,8 @@ import setting as st
 
 ###############################################################################
 #Choix du championnat Etudier
-Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Tirs_liga.csv","Tirs_Ligue1.csv","Tirs_Bundesliga.csv","Tirs_PremierLeague.csv","Tirs_SerieA.csv") )
-ChampionshipName = Championshipchoice.split("_")[1].split(".")[0]
+Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Liga","Ligue1","Bundesliga","PremierLeague","SerieA") )
+ChampionshipName = Championshipchoice
 
 #choix du tableau statistique de comparaison
 StatDataTable = stl.sidebar.selectbox("Statistic Data Table Selectbox",("which stat data table do you want ?", "BaseDataTeam", "AgainstBaseDataTeam", "GoalkeepingStat", "AgainstGoalkeepingStat", "AdvancedGoalkeepingStat", "AgainstAdvancedGoalkeepingStat", "DataShoots", "AgainstDataShoots", "PassStat", "AgainstPassStat", "PassStatType", "AgainstPassStatType", "OffensiveCreation", "AgainstOffensiveCreation", "DefensiveAction", "AgainstDefensiveAction", "Possession","AgainstPossession") )
@@ -43,7 +43,7 @@ else:
 	Team_choice_2 = stl.sidebar.selectbox("Choice second team to compare",(List))
 
 	if Team_choice_2 == "Which Team do you want to compare ?":
-		stl.write("You can choice ywo team to compre in the sidebar")
+		stl.write("You can choice two team to compare in the sidebar")
 	else:
 		stl.write("Barplot")
 		Barplot = plot.BarplotTeamStat(DataFbref[df_stat_team],Team_choice_1,Team_choice_2)
