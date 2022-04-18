@@ -46,6 +46,7 @@ def DatafBref(pageSoup,NB_Team):
 				Data.append(float(".".join(value)))
 			Data = [TeamName] + Data
 			Data = [row+1] + Data
+			del Data[10:]
 			Classement[row+1] = Data
 			del Team[0:3]
 			del DataClassement[0:15]
@@ -273,9 +274,11 @@ def DatafBref(pageSoup,NB_Team):
 				Data.append(float(".".join(value)))
 			Data = [TeamName] + Data
 			Data = [row+1] + Data
+			del Data[10:]
 			Classement[row+1]=Data
 			del Team[0:3]
 			del DataClassement[0:15]
+
 		#RemoveAwayHome
 		for row in range(0,20):
 			del DataClassement[0:26]
@@ -489,31 +492,37 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstPossession[Team[row].text] = Data	
 			del DataClassement[0:26]
 
-	#CLassement
-	df_Classement = pd.DataFrame.from_dict(Classement, orient='index', columns=['Classement', 'Equipe', 'MJ', 'V', 'N', 'D', 'BM', 'BE', 'DB', 'Pts', 'xG', 'xGA', 'xGD', 'xGD/90'])
+	#CLassement'Classement', 'Equipe', 'MP', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts'
+	#df_Classement = pd.DataFrame.from_dict(Classement, orient='index', columns=['Classement', 'Equipe', 'MJ', 'V', 'N', 'D', 'BM', 'BE', 'DB', 'Pts', 'xG', 'xGA', 'xGD', 'xGD/90'])
+	df_Classement = pd.DataFrame.from_dict(Classement, orient='index', columns=['Classement', 'Equipe', 'MP', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts'])
 	Pts_column = df_Classement.pop('Pts')
 	df_Classement.insert(6, 'Pts', Pts_column)
+	columns = list(df_Classement.columns)
+	#convert value string to float
+	for i  in range(len(columns)):
+		if i+2 <= len(columns)-1:
+			df_Classement[columns[i+2]] = pd.to_numeric(df_Classement[columns[i+2]],downcast="integer")
 	#BaseDataTeam
-	df_AgainstBaseDataTeam = pd.DataFrame.from_dict(AgainstBaseDataTeam, orient='index', columns=["Âge","Poss","PlayerUsed","MJ","Starts","Min","90s","Goal","Ast","G-PK","PK","PKatt","CY","CR","G/90","A/90","G+A/90","G-PK/90","G+A-PK/90","xG","npxG","xA","npxG+xA","xG/90","xA/90","xG+xA/90","npxG/90","npxG+xA/90"])
-	df_BaseDataTeam = pd.DataFrame.from_dict(BaseDataTeam, orient='index', columns=["Âge","Poss","PlayerUsed","MJ","Starts","Min","90s","Goal","Ast","G-PK","PK","PKatt","CY","CR","G/90","A/90","G+A/90","G-PK/90","G+A-PK/90","xG","npxG","xA","npxG+xA","xG/90","xA/90","xG+xA/90","npxG/90","npxG+xA/90"])
+	df_AgainstBaseDataTeam = pd.DataFrame.from_dict(AgainstBaseDataTeam, orient='index', columns=["Âge","Poss","PlayerUsed","MP","Starts","Min","90s","Goal","Ast","G-PK","PK","PKatt","CY","CR","G/90","A/90","G+A/90","G-PK/90","G+A-PK/90","xG","npxG","xA","npxG+xA","xG/90","xA/90","xG+xA/90","npxG/90","npxG+xA/90"])
+	df_BaseDataTeam = pd.DataFrame.from_dict(BaseDataTeam, orient='index', columns=["Âge","Poss","PlayerUsed","MP","Starts","Min","90s","Goal","Ast","G-PK","PK","PKatt","CY","CR","G/90","A/90","G+A/90","G-PK/90","G+A-PK/90","xG","npxG","xA","npxG+xA","xG/90","xA/90","xG+xA/90","npxG/90","npxG+xA/90"])
 	#GoalKeeperStat
-	df_AgainstGoalkeepingStat = pd.DataFrame.from_dict(AgainstGoalkeepingStat, orient='index', columns=["PlayerUsed","MJ","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsave%"])
-	df_GoalkeepingStat = pd.DataFrame.from_dict(GoalkeepingStat, orient='index', columns=["PlayerUsed","MJ","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsave%"])
+	df_AgainstGoalkeepingStat = pd.DataFrame.from_dict(AgainstGoalkeepingStat, orient='index', columns=["PlayerUsed","MP","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsv%"])
+	df_GoalkeepingStat = pd.DataFrame.from_dict(GoalkeepingStat, orient='index', columns=["PlayerUsed","MP","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsv%"])
 	#AdvancedGoalkeepingStat
 	df_AdvancedGoalkeepingStat = pd.DataFrame.from_dict(AdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","SOPA","SOPA/90","AvgDist"])
 	df_AgainstAdvancedGoalkeepingStat = pd.DataFrame.from_dict(AgainstAdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","SOPA","SOPA/90","AvgDist"])
 	#DataShoot
-	df_DataShoots = pd.DataFrame.from_dict(DataShoots, orient='index', columns=["Gls","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
-	df_AgainstDataShoots = pd.DataFrame.from_dict(AgainstDataShoots, orient='index', columns=["Gls","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
+	df_DataShoots = pd.DataFrame.from_dict(DataShoots, orient='index', columns=["Goals","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
+	df_AgainstDataShoots = pd.DataFrame.from_dict(AgainstDataShoots, orient='index', columns=["Goals","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
 	#PassStat
-	df_PassStat = pd.DataFrame.from_dict(PassStat, orient='index', columns=["PCmp","PAtt","PCmp%","PTotDist","PPrgDist","SPCmp","SPAtt","SPCmp%","MPCmp","MPAtt","MPCmp%","LPCmp","LPAtt","LPCmp%","A","xA","A-xA","Ash","P_1/3","Pass18YardBox","P_18Box","PPrg"])
-	df_AgainstPassStat = pd.DataFrame.from_dict(AgainstPassStat, orient='index', columns=["PCmp","PAtt","PCmp%","PTotDist","PPrgDist","SPCmp","SPAtt","SPCmp%","MPCmp","MPAtt","MPCmp%","LPCmp","LPAtt","LPCmp%","A","xA","A-xA","Ash","P_1/3","Pass18YardBox","P_18Box","PPrg"])
+	df_PassStat = pd.DataFrame.from_dict(PassStat, orient='index', columns=["PCmp","PAtt","PCmp%","PTotDist","PPrgDist","SPCmp","SPAtt","SPCmp%","MPCmp","MPAtt","MPCmp%","LPCmp","LPAtt","LPCmp%","A","xA","A-xA","Ash","P_1/3","Pass18YardBox","CrsPA","PPrg"])
+	df_AgainstPassStat = pd.DataFrame.from_dict(AgainstPassStat, orient='index', columns=["PCmp","PAtt","PCmp%","PTotDist","PPrgDist","SPCmp","SPAtt","SPCmp%","MPCmp","MPAtt","MPCmp%","LPCmp","LPAtt","LPCmp%","A","xA","A-xA","Ash","P_1/3","Pass18YardBox","CrsPA","PPrg"])
 	#SquadPassType
-	df_PassStatType = pd.DataFrame.from_dict(PassStatType, orient='index', columns=["PAtt","PLive","PDead","PFK","PbBD","Press","P(<40m)","Crs","CK","CIn","COut","CStraigt","PGround","PLow","PHigh","BPLeft","BPRight","BPHead","throwIns","BPOther","PCmp","POff","POut","PInt","PBlocks"])
-	df_AgainstPassStatType = pd.DataFrame.from_dict(AgainstPassStatType, orient='index', columns=["PAtt","PLive","PDead","PFK","PbBD","Press","P(<40m)","Crs","CK","CIn","COut","CStraigt","PGround","PLow","PHigh","BPLeft","BPRight","BPHead","throwIns","BPOther","PCmp","POff","POut","PInt","PBlocks"])
+	df_PassStatType = pd.DataFrame.from_dict(PassStatType, orient='index', columns=["PAtt","PLive","PDead","PFK","PbBD","Ppress","P(<40m)","Crs","CK","CIn","COut","CStraigt","PGround","PLow","PHigh","BPLeft","BPRight","BPHead","throwIns","BPOther","PCmp","POff","POut","PInt","PBlocks"])
+	df_AgainstPassStatType = pd.DataFrame.from_dict(AgainstPassStatType, orient='index', columns=["PAtt","PLive","PDead","PFK","PbBD","Ppress","P(<40m)","Crs","CK","CIn","COut","CStraigt","PGround","PLow","PHigh","BPLeft","BPRight","BPHead","throwIns","BPOther","PCmp","POff","POut","PInt","PBlocks"])
 	#SQuadGoalAndSHotCreation
-	df_OffensiveCreation = pd.DataFrame.from_dict(OffensiveCreation, orient='index', columns=["SCA","SCA90","SCAPassLive","SCAPassDead","SCADrib","SCASh","SCAFoulsdranw","SCADef","GCA","GCA90","GCAPassLive","GCAPassDead","GCADrib","GCASh","GCAFoulsdrawn","GCADef"])
-	df_AgainstOffensiveCreation = pd.DataFrame.from_dict(AgainstOffensiveCreation, orient='index', columns=["SCA","SCA90","SCAPassLive","SCAPassDead","SCADrib","SCASh","SCAFoulsdranw","SCADef","GCA","GCA90","GCAPassLive","GCAPassDead","GCADrib","GCASh","GCAFoulsdrawn","GCADef"])
+	df_OffensiveCreation = pd.DataFrame.from_dict(OffensiveCreation, orient='index', columns=["SCA","SCA90","SCAPassLive","SCAPassDead","SCADrib","SCASh","SCAFoulsdrawn","SCADef","GCA","GCA90","GCAPassLive","GCAPassDead","GCADrib","GCASh","GCAFoulsdrawn","GCADef"])
+	df_AgainstOffensiveCreation = pd.DataFrame.from_dict(AgainstOffensiveCreation, orient='index', columns=["SCA","SCA90","SCAPassLive","SCAPassDead","SCADrib","SCASh","SCAFoulsdrawn","SCADef","GCA","GCA90","GCAPassLive","GCAPassDead","GCADrib","GCASh","GCAFoulsdrawn","GCADef"])
 	#SquandDefensiveAction
 	df_DefensiveAction = pd.DataFrame.from_dict(DefensiveAction, orient='index', columns=["Tkl","Tklsuccess","TklDef3rd","TklMid3rd","TKlAtt3rd","DribTkl","Drib+Tkl","DribTkl%","DribPast","Press","PressSucc","PressSucc%","PressDef3rd","PressMid3rd","PressAtt3rd","Blocks","BlockShoot","ShSv","BlockPass","Int","Tkl+Int","Clr","ErrLSh"])
 	df_AgainstDefensiveAction = pd.DataFrame.from_dict(AgainstDefensiveAction, orient='index', columns=["Tkl","Tklsuccess","TklDef3rd","TklMid3rd","TKlAtt3rd","DribTkl","Drib+Tkl","DribTkl%","DribPast","Press","PressSucc","PressSucc%","PressDef3rd","PressMid3rd","PressAtt3rd","Blocks","BlockShoot","ShSv","BlockPass","Int","Tkl+Int","Clr","ErrLSh"])

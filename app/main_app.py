@@ -49,3 +49,11 @@ else:
 		Barplot = plot.BarplotTeamStat(DataFbref[df_stat_team],Team_choice_1,Team_choice_2)
 		for i in Barplot:
 			stl.pyplot(i)
+
+TermToDef = stl.sidebar.text_input("statistical glossary of terms", value="writes term you want defined (datatable variable)")
+if TermToDef == "writes term you want defined (datatable variable)":
+	pass
+elif	 TermToDef in st.Dico_Def_Stat_Club:
+	stl.sidebar.write(TermToDef + ": " + st.Dico_Def_Stat_Club[TermToDef])
+else:
+	stl.sidebar.write(TermToDef + ": Term you want defined doesn't exist in our glossary. Make sure you use the same orthograph than in the datatable")
