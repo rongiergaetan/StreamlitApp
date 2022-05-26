@@ -48,7 +48,8 @@ def DatafBref(pageSoup,NB_Team):
 			Data = [row+1] + Data
 			del Data[10:]
 			Classement[row+1] = Data
-			del Team[0:3]
+			del Team[0:2]
+			print("#################################################")
 			del DataClassement[0:15]
 		#RemoveAwayHome
 		for row in range(0,18):
@@ -276,10 +277,11 @@ def DatafBref(pageSoup,NB_Team):
 			Data = [row+1] + Data
 			del Data[10:]
 			Classement[row+1]=Data
-			del Team[0:3]
+			del Team[0:2]
 			del DataClassement[0:15]
 
 		#RemoveAwayHome
+		print(Team)
 		for row in range(0,20):
 			del DataClassement[0:26]
 			del Team[0]
@@ -533,4 +535,4 @@ def DatafBref(pageSoup,NB_Team):
 	return df_Classement, df_BaseDataTeam, df_AgainstBaseDataTeam, df_GoalkeepingStat, df_AgainstGoalkeepingStat, df_AdvancedGoalkeepingStat, df_AgainstAdvancedGoalkeepingStat, df_DataShoots, df_AgainstDataShoots, df_PassStat, df_AgainstPassStat, df_PassStatType, df_AgainstPassStatType, df_OffensiveCreation, df_AgainstOffensiveCreation, df_DefensiveAction, df_AgainstDefensiveAction, df_Possession, df_AgainstPossession
 
 
-a  = DatafBref(MakeURL(st.fbref,st.country,"Ligue1"),"Ligue1")
+#a  = DatafBref(MakeURL(st.fbref,st.country,"Ligue1"),"Ligue1")

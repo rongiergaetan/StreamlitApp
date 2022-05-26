@@ -50,10 +50,10 @@ else:
 		for i in Barplot:
 			stl.pyplot(i)
 
-TermToDef = stl.sidebar.text_input("statistical glossary of terms", value="writes term you want defined (datatable variable)")
-if TermToDef == "writes term you want defined (datatable variable)":
+TermToDef = stl.sidebar.text_input("statistical glossary of terms", value="datatable variable that you want defining")
+if TermToDef == "datatable variable that you want defining":
 	pass
 elif	 TermToDef in st.Dico_Def_Stat_Club:
 	stl.sidebar.write(TermToDef + ": " + st.Dico_Def_Stat_Club[TermToDef])
 else:
-	stl.sidebar.write(TermToDef + ": Term you want defined doesn't exist in our glossary. Make sure you use the same orthograph than in the datatable")
+	stl.sidebar.write(TermToDef + ": variable you want defining doesn't exist in our glossary. Make sure you use the same orthograph than in the datatable (take attention to minuscule and majuscule)")
