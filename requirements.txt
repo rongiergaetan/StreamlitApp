@@ -1,4 +1,4 @@
-protobuf 3.19.0
+pip
 matplotlib
 pandas
 numpy
