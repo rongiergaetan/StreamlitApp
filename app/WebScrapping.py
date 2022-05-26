@@ -36,7 +36,7 @@ def DatafBref(pageSoup,NB_Team):
 
 
 	if NB_Team == "Bundesliga":
-		for row in range(0,17):
+		for row in range(0,18):
 			TeamName = Team[0].text
 			Data=[]
 			for col in range(0,12):
@@ -51,13 +51,13 @@ def DatafBref(pageSoup,NB_Team):
 			del Team[0:3]
 			del DataClassement[0:15]
 		#RemoveAwayHome
-		for row in range(0,17):
+		for row in range(0,18):
 			del DataClassement[0:26]
 			del Team[0]
 		#DataTeamBAse
 		Team = pageSoup.find_all("th",{"class":"left"})
 		centre = pageSoup.find_all("td",{"class":"center"})
-		for row in range(0,17):
+		for row in range(0,18):
 			Data = []
 			for col in range(0,26):
 				value = DataClassement[col].text.split(",")
@@ -69,8 +69,8 @@ def DatafBref(pageSoup,NB_Team):
 			BaseDataTeam[Team[row].text] = Data	
 			del DataClassement[0:26]
 			del centre[0:2]
-		#DataTeamBAse
-		for row in range(0,17):
+		#DataTeamBAseAgainst
+		for row in range(0,18):
 			Data = []
 			for col in range(0,26):
 				value = DataClassement[col].text.split(",")
@@ -84,7 +84,7 @@ def DatafBref(pageSoup,NB_Team):
 			del centre[0:2]
 			del centre[0:2]
 		#goalkeepingStat 3
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,20):
 				value = DataClassement[col].text.split(",")
@@ -96,7 +96,7 @@ def DatafBref(pageSoup,NB_Team):
 			GoalkeepingStat[Team[row].text] = Data	
 			del DataClassement[0:20]
 		#AgaintGoalkeepingStat 4
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,20):
 				value = DataClassement[col].text.split(",")
@@ -108,7 +108,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstGoalkeepingStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:20]
 		#AdvancedgoalkeepingStat 5
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,27):
 				value = DataClassement[col].text.split(",")
@@ -119,7 +119,7 @@ def DatafBref(pageSoup,NB_Team):
 			AdvancedGoalkeepingStat[Team[row].text] = Data	
 			del DataClassement[0:27]
 		#AgaintAdvancedGoalkeepingStat 6
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,27):
 				value = DataClassement[col].text.split(",")
@@ -130,7 +130,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstAdvancedGoalkeepingStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
 		#ShootStat 7
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,19):
 				value = DataClassement[col].text.split(",")
@@ -141,7 +141,7 @@ def DatafBref(pageSoup,NB_Team):
 			DataShoots[Team[row].text] = Data	
 			del DataClassement[0:19]
 		#AgaintShootStat 8
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,19):
 				value = DataClassement[col].text.split(",")
@@ -152,7 +152,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstDataShoots["Against " + Team[row].text] = Data	
 			del DataClassement[0:19]
 		#PassStat 9
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,24):
 				value = DataClassement[col].text.split(",")
@@ -163,7 +163,7 @@ def DatafBref(pageSoup,NB_Team):
 			PassStat[Team[row].text] = Data	
 			del DataClassement[0:24]
 		#AgaintPassStat 10
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,24):
 				Data.append(float(float(DataClassement[col].text)))
@@ -171,7 +171,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstPassStat["Against " + Team[row].text] = Data	
 			del DataClassement[0:24]
 		#SquadPassType 11
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,27):
 				value = DataClassement[col].text.split(",")
@@ -182,7 +182,7 @@ def DatafBref(pageSoup,NB_Team):
 			PassStatType[Team[row].text] = Data	
 			del DataClassement[0:27]
 		#AgaintSquadPassType 12
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,27):
 				value = DataClassement[col].text.split(",")
@@ -193,7 +193,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstPassStatType["Against " + Team[row].text] = Data	
 			del DataClassement[0:27]
 		#SQuadGoalAndSHotCreation 13
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,18):
 				value = DataClassement[col].text.split(",")
@@ -204,7 +204,7 @@ def DatafBref(pageSoup,NB_Team):
 			OffensiveCreation[Team[row].text] = Data	
 			del DataClassement[0:18]
 		#SQuadGoalAndSHotCreation 14
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,18):
 				value = DataClassement[col].text.split(",")
@@ -215,7 +215,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstOffensiveCreation["Against " + Team[row].text] = Data	
 			del DataClassement[0:18]
 		#SquadDefensiveAction 15
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,25):
 				value = DataClassement[col].text.split(",")
@@ -226,7 +226,7 @@ def DatafBref(pageSoup,NB_Team):
 			DefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
 		#AgainstSquadDefensiveAction 16
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,25):
 				value = DataClassement[col].text.split(",")
@@ -237,7 +237,7 @@ def DatafBref(pageSoup,NB_Team):
 			AgainstDefensiveAction[Team[row].text] = Data	
 			del DataClassement[0:25]
 		#SquadPossesion17
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,26):
 				value = DataClassement[col].text.split(",")
@@ -248,7 +248,7 @@ def DatafBref(pageSoup,NB_Team):
 			Possession[Team[row].text] = Data	
 			del DataClassement[0:26]
 		#AgainstSquadpossession 18
-		for row in range(0,17):
+		for row in range(0,18):
 			Data=[]
 			for col in range(0,26):
 				value = DataClassement[col].text.split(",")
@@ -509,8 +509,8 @@ def DatafBref(pageSoup,NB_Team):
 	df_AgainstGoalkeepingStat = pd.DataFrame.from_dict(AgainstGoalkeepingStat, orient='index', columns=["PlayerUsed","MP","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsv%"])
 	df_GoalkeepingStat = pd.DataFrame.from_dict(GoalkeepingStat, orient='index', columns=["PlayerUsed","MP","Min","90s","GA","GA/90","SoTA","saves","saves%","CS","CS%","PKAtt","PKa","PKsv","PKm","PKsv%"])
 	#AdvancedGoalkeepingStat
-	df_AdvancedGoalkeepingStat = pd.DataFrame.from_dict(AdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","SOPA","SOPA/90","AvgDist"])
-	df_AgainstAdvancedGoalkeepingStat = pd.DataFrame.from_dict(AgainstAdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","SOPA","SOPA/90","AvgDist"])
+	df_AdvancedGoalkeepingStat = pd.DataFrame.from_dict(AdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","DefActOPA","DefActOPA/90","AvgDist"])
+	df_AgainstAdvancedGoalkeepingStat = pd.DataFrame.from_dict(AgainstAdvancedGoalkeepingStat, orient='index', columns=["GA","PKa","FKGA","CKA","CSC","PSxG","PSxG/SoT","PSxG+/-","PSxG+/-/90","CMPLaunched","AttLaunched","CMPLaunched%","AttPass","ThrPass","Pass%","AvgLen","AttGoalKicks","LaunchGaolKicks%","AvgLenGoalKicks","OppCrosses","StpCrosses","StpCrosses%","DefActOPA","DefActOPA/90","AvgDist"])
 	#DataShoot
 	df_DataShoots = pd.DataFrame.from_dict(DataShoots, orient='index', columns=["Goals","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
 	df_AgainstDataShoots = pd.DataFrame.from_dict(AgainstDataShoots, orient='index', columns=["Goals","Sh","ShOT","ShOT%","Sh/90","ShOT/90","G/Sh","G/ShOT","ShDist","FK","PK","PKatt","xG","npxG","npxG/Sh","G-xG","np:G-xG"])
