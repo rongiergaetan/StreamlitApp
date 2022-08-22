@@ -8,7 +8,7 @@ import setting as st
 
 ###############################################################################
 #Choix du championnat Etudier
-Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Liga","Ligue1","Bundesliga","PremierLeague","SerieA") )
+Championshipchoice = stl.sidebar.selectbox("which Championship do you want ?",("Ligue1","Liga","Bundesliga","PremierLeague","SerieA") )
 ChampionshipName = Championshipchoice
 
 #choix du tableau statistique de comparaison
@@ -19,7 +19,7 @@ StatDataTable = stl.sidebar.selectbox("Statistic Data Table Selectbox",("which s
 DataFbref = ws.DatafBref(ws.MakeURL(st.fbref,st.country,ChampionshipName),ChampionshipName)
 
 stl.title("Classement")
-stl.dataframe(DataFbref[0],width=1000,height=1000)
+stl.table(DataFbref[0])
 stl.write("source: fbref")
 
 
@@ -32,7 +32,7 @@ if StatDataTable == "which stat data table do you want ?":
 else:
 	stl.write(StatDataTable)
 	df_stat_team = st.Dico_OutDatafBreb[StatDataTable]
-	stl.dataframe(DataFbref[df_stat_team],width=1000,height=1000)
+	stl.table(DataFbref[df_stat_team])
 	stl.write("source: fbref")
 
 	#Barplot Stat Team
